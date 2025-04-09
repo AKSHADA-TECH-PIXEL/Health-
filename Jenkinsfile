@@ -7,7 +7,7 @@ pipeline {
     stage('Git checkout') {
       steps {
          echo 'This is for cloning the gitrepo'
-         git branch: 'main', url: 'https://github.com/AKSHADA-TECH-PIXEL/banking'
+         git branch: 'master', url: 'https://github.com/AKSHADA-TECH-PIXEL/Health-.git'
                           }
             }
     stage('Create a Package') {
@@ -19,12 +19,12 @@ pipeline {
 
     stage('Publish the HTML Reports') {
       steps {
-          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: '/var/lib/jenkins/workspace/Banking/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: '/var/lib/jenkins/workspace/Health/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                         }
             }
     stage('Create a Docker image from the Package Insure-Me.jar file') {
       steps {
-        sh 'docker build -t aksh193/banking-app:latest .'
+        sh 'docker build -t aksh193/Health-:latest .'
                     }
             }
     stage('Login to Dockerhub') {
@@ -36,14 +36,14 @@ pipeline {
             }
     stage('Push the Docker image') {
       steps {
-        sh 'docker push aksh193/banking-app:'
+        sh 'docker push aksh193/Health:'
                                 }
             }
-    stage('Ansbile config and Deployment') {
-      steps {
-        ansiblePlaybook credentialsId: 'ansible-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: 'var/lib/jenkins/workspace/banking/deploy.yml', playbook: 'ansible.yml', vaultTmpPath: ''
-                               }
-            }
+    // stage('Ansbile config and Deployment') {
+    //   steps {
+    //     ansiblePlaybook credentialsId: 'ansible-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: 'var/lib/jenkins/workspace/banking/deploy.yml', playbook: 'ansible.yml', vaultTmpPath: ''
+    //                            }
+    //         }
 
     }
 }
