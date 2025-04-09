@@ -24,7 +24,7 @@ pipeline {
             }
     stage('Create a Docker image from the Package Insure-Me.jar file') {
       steps {
-        sh 'docker build -t aksh193/Health:latest .'
+        sh 'docker build -t aksh193/health:latest .'
                     }
             }
     stage('Login to Dockerhub') {
@@ -36,7 +36,7 @@ pipeline {
             }
     stage('Push the Docker image') {
       steps {
-        sh 'docker push aksh193/Health:latest'
+        sh 'docker push aksh193/health:latest'
                                 }
             }
     // stage('Ansbile config and Deployment') {
