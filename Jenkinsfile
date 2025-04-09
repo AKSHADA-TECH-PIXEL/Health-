@@ -36,7 +36,7 @@ pipeline {
             }
     stage('Push the Docker image') {
       steps {
-        sh 'docker push aksh193/Health:'
+        sh 'docker push aksh193/Health:latest'
                                 }
             }
     // stage('Ansbile config and Deployment') {
