@@ -22,6 +22,11 @@ pipeline {
           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: '/var/lib/jenkins/workspace/Health/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                         }
             }
+     stage('Create a Docker image') {
+      steps {
+        sh 'docker build -t aksh193/Health-:latest .'
+                    }
+            }
    }
 }
 
