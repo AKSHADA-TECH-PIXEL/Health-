@@ -27,13 +27,22 @@ pipeline {
         sh 'docker build -t aks193/healthservice:latest .'
                     }
             }
-//      stage('Login to Dockerhub') {
-//       steps {
-//         withCredentials([usernamePassword(credentialsId: 'dockerlogin', passwordVariable: 'dockerpass', usernameVariable: 'dockeruser')]) {
-//         sh 'docker login -u ${dockeruser} -p ${dockerpass}'
+     stage('Login to Dockerhub') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerlogin', passwordVariable: 'dockerpass', usernameVariable: 'dockeruser')]) {
+        sh 'docker login -u ${dockeruser} -p ${dockerpass}'
      
-//    }
-// }
+    }
+ }
    }
+     stage('Push the Docker image') {
+      steps {
+        sh 'docker push aks193/healthservice'
+                                }
+            }
+     
+     
 }
+}
+
     
