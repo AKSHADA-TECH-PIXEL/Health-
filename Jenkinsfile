@@ -29,13 +29,12 @@ pipeline {
             }
      stage('Login to Dockerhub') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerlogin', passwordVariable: 'dockerpass', usernameVariable: 'dockeruser')]) {
-        sh 'docker login -u ${dockeruser} -p ${dockerpass}'
-                                                                    }
-                                }
+        withCredentials([usernamePassword(credentialsId: 'docker-user', passwordVariable: 'docker-pass', usernameVariable: 'docker-user')]) {
+        sh 'docker login -u ${docker-user} -p ${docker-pass}'
+                 }
             }
  
-   
+     }
      stage('Push the Docker image') {
       steps {
         sh 'docker push aks193/healthservice:'
