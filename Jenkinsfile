@@ -22,28 +22,7 @@ pipeline {
           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: '/var/lib/jenkins/workspace/Health/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                         }
             }
-    stage('Create a Docker image from the Package Insure-Me.jar file') {
-      steps {
-        sh 'docker build -t aksh193/health:latest .'
-                    }
-            }
-    stage('Login to Dockerhub') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerlogin', passwordVariable: 'dockerpass', usernameVariable: 'dockeruser')]) {
-        sh 'docker login -u ${dockeruser} -p ${dockerpass}'
-                                                                    }
-                                }
-            }
-    stage('Push the Docker image') {
-      steps {
-        sh 'docker push aksh193/health:latest'
-                                }
-            }
-    // stage('Ansbile config and Deployment') {
-    //   steps {
-    //     ansiblePlaybook credentialsId: 'ansible-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: 'var/lib/jenkins/workspace/banking/deploy.yml', playbook: 'ansible.yml', vaultTmpPath: ''
-    //                            }
-    //         }
-
-    }
+   }
 }
+
+    
