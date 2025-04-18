@@ -37,7 +37,7 @@ pipeline {
    }
      stage('Push the Docker image') {
       steps {
-        sh 'docker push aks193/healthservice'
+        sh 'docker push aks193/healthservice:'
                                 }
             }
      
