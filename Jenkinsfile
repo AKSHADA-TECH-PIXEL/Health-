@@ -24,7 +24,7 @@ pipeline {
             }
      stage('Create a Docker image') {
       steps {
-        sh 'docker build -t aksh193/health-:latest .'
+        sh 'docker build -t aksh193/healthservice:latest .'
                     }
             }
    }
